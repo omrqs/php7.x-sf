@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN update-ca-certificates
 
-RUN docker-php-ext-install -j$(nproc) iconv opcache pdo pdo_mysql mbstring intl json gd mcrypt bcmath pcntl \
+RUN docker-php-ext-install -j$(nproc) zip iconv opcache pdo pdo_mysql mbstring intl json gd mcrypt bcmath pcntl \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
 
 # Install Composer
