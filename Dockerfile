@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     ca-certificates \
-    openssl
+    openssl \
+    supervisor
 
 RUN update-ca-certificates
 
@@ -33,4 +34,4 @@ RUN "date"
 RUN echo 'alias sf="php bin/console"' >> ~/.bashrc
 RUN echo 'alias phpunit="php bin/phpunit"' >> ~/.bashrc
 
-WORKDIR /var/www/symfony
+WORKDIR /var/www
