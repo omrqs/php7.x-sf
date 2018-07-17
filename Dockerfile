@@ -5,14 +5,12 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libicu-dev \
-	libpng-dev \
-	libfreetype6-dev \
+    libpng-dev \
+    libfreetype6-dev \
     libmcrypt-dev \
-	libjpeg-dev \
-	cron \
+    libjpeg-dev \
+    cron \
     logrotate \
-    nodejs \
-    npm \
     ca-certificates \
     openssl \
     wget
