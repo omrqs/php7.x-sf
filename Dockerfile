@@ -18,6 +18,11 @@ RUN apt-get update && apt-get install -y \
 # Install supervisor
 RUN apt-get install -y supervisor
 
+# Install phpunit
+RUN wget https://phar.phpunit.de/phpunit-7.phar && chmod +x phpunit-7.phar
+RUN mv phpunit-7.phar /usr/local/bin/phpunit
+RUN phpunit --version
+
 RUN update-ca-certificates
 
 RUN docker-php-ext-install -j$(nproc) zip iconv opcache pdo pdo_mysql mbstring intl json gd mcrypt bcmath pcntl \
