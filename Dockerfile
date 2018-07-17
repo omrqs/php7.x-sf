@@ -14,7 +14,8 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     ca-certificates \
-    openssl
+    openssl \
+    wget
     
 # Install supervisor
 #RUN apt-get install -y supervisor
@@ -40,6 +41,5 @@ RUN ln -s /usr/share/zoneinfo/UTC /etc/localtime
 RUN "date"
 
 RUN echo 'alias sf="php bin/console"' >> ~/.bashrc
-RUN echo 'alias phpunit="php bin/phpunit"' >> ~/.bashrc
 
 WORKDIR /var/www
