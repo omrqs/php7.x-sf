@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     wget
     
 # Install supervisor
-#RUN apt-get install -y supervisor
+RUN apt-get install -y supervisor
 
 RUN update-ca-certificates
 
