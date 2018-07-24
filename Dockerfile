@@ -13,8 +13,14 @@ RUN apt-get update && apt-get install -y \
     logrotate \
     ca-certificates \
     openssl \
-    wget
+    wget \
+    gnupg
     
+# Install and configure blackfire.io
+RUN wget -q -O - https://packagecloud.io/gpg.key | apt-key add -
+RUN echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list
+RUN apt-get install -y blackfire-agent blackfire-php
+
 # Install supervisor
 RUN apt-get install -y supervisor
 
