@@ -26,11 +26,6 @@ RUN apt-get update && apt-get install -y \
 # Install supervisor
 RUN apt-get install -y supervisor
 
-# Install phpunit
-RUN wget https://phar.phpunit.de/phpunit-7.phar && chmod +x phpunit-7.phar
-RUN mv phpunit-7.phar /usr/local/bin/phpunit
-RUN phpunit --version
-
 RUN update-ca-certificates
 
 # Install certbot
@@ -42,12 +37,6 @@ RUN docker-php-ext-install -j$(nproc) zip iconv opcache pdo pdo_mysql mbstring i
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
-
-# Install xdebug with pecl
-RUN yes | pecl install xdebug \
-	&& echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
-	&& echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
-	&& echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 # Set timezone
 RUN rm /etc/localtime
