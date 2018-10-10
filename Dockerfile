@@ -14,15 +14,20 @@ RUN apt-get update && apt-get install -y \
     ca-certificates \
     openssl \
     wget \
-    gnupg
+    gnupg \
+    python-pydot \
+    python-pydot-ng \
+    graphviz
+
+# Install phpdoc and deps
+RUN wget http://phpdoc.org/phpDocumentor.phar
+RUN mv phpDocumentor.phar /usr/local/bin/phpdoc
+RUN chmod +x /usr/local/bin/phpdoc
 
 # Install supervisor
 RUN apt-get install -y supervisor
 
 RUN update-ca-certificates
-
-# Install certbot
-RUN apt-get install -y python-certbot-nginx
 
 RUN docker-php-ext-install -j$(nproc) zip iconv opcache pdo pdo_mysql mbstring intl json gd bcmath pcntl \
 	&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
