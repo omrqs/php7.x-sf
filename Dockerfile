@@ -13,17 +13,11 @@ RUN apk add --update \
     zlib-dev \
     logrotate \
     ca-certificates \
-    graphviz \
     supervisor
 
 RUN update-ca-certificates && apk add openssl
 
 RUN docker-php-ext-install iconv pdo pdo_mysql mbstring intl json gd zip bcmath
-
-# Install phpdoc and deps
-RUN wget http://phpdoc.org/phpDocumentor.phar
-RUN mv phpDocumentor.phar /usr/local/bin/phpdoc
-RUN chmod +x /usr/local/bin/phpdoc
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
