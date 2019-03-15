@@ -1,6 +1,7 @@
 FROM php:7.3-alpine
 
 RUN apk add --update \
+    tzdata \
     vim \
     git \
     unzip \
