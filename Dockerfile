@@ -9,8 +9,6 @@ RUN apk add --update \
     icu-dev \
     libmcrypt-dev \
     libzip-dev \
-    libpng-dev \
-    jpeg-dev \
     zlib-dev \
     logrotate \
     ca-certificates \
