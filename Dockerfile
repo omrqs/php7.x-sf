@@ -21,6 +21,10 @@ RUN update-ca-certificates && apk add openssl
 
 RUN docker-php-ext-install iconv pdo pdo_mysql mbstring intl json gd zip bcmath
 
+# blackfire agent and php lib
+RUN wget -O /usr/local/bin/blackfire-agent https://packages.blackfire.io/binaries/blackfire-agent/1.27.0/blackfire-agent-linux_386 && chmod +x /usr/local/bin/blackfire-agent
+RUN wget -O /usr/local/lib/php/extensions/blackfire.so https://packages.blackfire.io/binaries/blackfire-php/1.26.2/blackfire-php-linux_i386-php-73.so && mkdir -p /var/run/blackfire/
+
 # Install Composer and global deps
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer global require hirak/prestissimo
