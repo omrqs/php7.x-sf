@@ -19,7 +19,7 @@ RUN apk add --update \
 
 RUN update-ca-certificates && apk add openssl
 
-RUN docker-php-ext-install iconv pdo pdo_mysql mbstring intl json gd zip bcmath
+RUN docker-php-ext-install iconv pdo pdo_mysql mbstring intl json gd zip bcmath pcntl
 
 # blackfire agent and php lib
 RUN wget -O /usr/local/bin/blackfire-agent https://packages.blackfire.io/binaries/blackfire-agent/1.27.0/blackfire-agent-linux_static_amd64 && chmod +x /usr/local/bin/blackfire-agent
