@@ -29,6 +29,8 @@ RUN wget -O /usr/local/bin/blackfire https://packages.blackfire.io/binaries/blac
 # Install Composer and global deps
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer global require hirak/prestissimo
+RUN composer global require friendsofphp/php-cs-fixer
+RUN export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # Set timezone
 # RUN rm /etc/localtime
