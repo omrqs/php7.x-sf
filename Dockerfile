@@ -23,7 +23,8 @@ RUN docker-php-ext-install iconv pdo pdo_mysql mbstring intl json gd zip bcmath 
 
 # Install Composer and global deps
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-RUN composer global require hirak/prestissimo
+RUN composer global require hirak/prestissimo friendsofphp/php-cs-fixer
+RUN export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 # Set timezone
 # RUN rm /etc/localtime
