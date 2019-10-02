@@ -8,6 +8,8 @@ RUN apk add --update \
     wget \
     gnupg \
     icu-dev \
+    libpng-dev \
+    jpeg-dev \
     libmcrypt-dev \
     libzip-dev \
     zlib-dev \
