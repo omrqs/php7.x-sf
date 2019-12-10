@@ -1,4 +1,4 @@
-FROM php:7.3-alpine
+FROM php:7.4-alpine
 
 RUN apk add --update --no-cache $PHPIZE_DEPS \
     tzdata \
@@ -17,11 +17,11 @@ RUN apk add --update --no-cache $PHPIZE_DEPS \
     ca-certificates \
     supervisor
 
-RUN pecl install xdebug-2.7.2
+RUN pecl install xdebug-2.9.0
 
 RUN update-ca-certificates && apk add openssl
 
-RUN docker-php-ext-install iconv pdo pdo_mysql mbstring intl json gd zip bcmath pcntl
+RUN docker-php-ext-install opcache pdo_mysql intl json gd zip bcmath pcntl
 RUN docker-php-ext-enable xdebug
 
 # Install Composer and global deps
