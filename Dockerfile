@@ -1,11 +1,9 @@
 FROM php:7.4-alpine
 
-RUN apk add --update --no-cache $PHPIZE_DEPS \
+RUN apk add --virtual --update --no-cache $PHPIZE_DEPS \
+    openssl \
     tzdata \
-    vim \
-    git \
     unzip \
-    wget \
     gnupg \
     icu-dev \
     libpng-dev \
@@ -15,11 +13,12 @@ RUN apk add --update --no-cache $PHPIZE_DEPS \
     zlib-dev \
     logrotate \
     ca-certificates \
-    supervisor
+    supervisor \
+    && rm -rf /var/cache/apk/* /var/lib/apk/* or /etc/apk/cache/*
 
 RUN pecl install xdebug-2.9.0
 
-RUN update-ca-certificates && apk add openssl
+RUN update-ca-certificates
 
 RUN docker-php-ext-install opcache pdo_mysql intl json gd zip bcmath pcntl
 RUN docker-php-ext-enable xdebug opcache
@@ -29,7 +28,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer global require hirak/prestissimo friendsofphp/php-cs-fixer
 RUN export PATH="$PATH:$HOME/.composer/vendor/bin"
 
-# Set timezone
+# Set timezone and cleanup apk cache
 RUN ln -s /usr/share/zoneinfo/UTC /etc/localtime
 
 WORKDIR /var/www
