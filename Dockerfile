@@ -28,7 +28,7 @@ RUN docker-php-ext-enable xdebug opcache
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     export PATH="$PATH:$HOME/.composer/vendor/bin"
 
-RUN composer global require hirak/prestissimo friendsofphp/php-cs-fixer
+RUN composer global require hirak/prestissimo friendsofphp/php-cs-fixer squizlabs/php_codesniffer
 
 RUN curl -LsS https://get.symfony.com/cli/installer -o /usr/local/bin/symfony && \
     chmod a+x /usr/local/bin/symfony && \
